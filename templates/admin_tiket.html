@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Admin Tiket | NadaRaya Fest{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="tag">ADMIN · TICKET MANAGEMENT</p>
+  <h1>Tambah tiket.</h1>
+  <p>Kelola katalog tiket NadaRaya Fest melalui form Flask-WTF.</p>
+</section>
+
+<section class="paper form-paper">
+<form method="POST" data-disable-submit="true" action="{{ url_for('admin_tiket') }}" novalidate>
+  {{ form.hidden_tag() }}
+
+  {{ form.nama.label }}
+  {{ form.nama(placeholder="Contoh: Early Bird Plus") }}
+  {% for error in form.nama.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.kategori.label }}
+  {{ form.kategori() }}
+  {% for error in form.kategori.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.harga.label }}
+  {{ form.harga(min="1", placeholder="250000") }}
+  {% for error in form.harga.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.kuota.label }}
+  {{ form.kuota(min="0", placeholder="500") }}
+  {% for error in form.kuota.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.deskripsi.label }}
+  {{ form.deskripsi(rows="4", placeholder="Deskripsikan benefit tiket...") }}
+  {% for error in form.deskripsi.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.submit(class="button") }}
+</form>
+</section>
+
+<section class="ticket-grid admin-list">
+  {% for t in tiket %}
+  <article class="ticket-card">
+    <div class="ticket-top"><span>PASS 0{{ t.id }}</span><span>{{ t.kategori | upper }}</span></div>
+    <h2>{{ t.nama | title }}</h2>
+    <p>{{ t.deskripsi }}</p>
+    <div class="price">Rp{{ "{:,}".format(t.harga).replace(",", ".") }}</div>
+    <p class="quota">Kuota: {{ t.kuota }} tiket</p>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

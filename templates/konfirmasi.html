@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Konfirmasi | NadaRaya Fest{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="tag">ORDER CONFIRMED</p>
+  <h1>Pesanan diterima.</h1>
+  <p>Halaman ini ditampilkan setelah redirect dari proses POST (PRG).</p>
+</section>
+<section class="paper detail">
+{% if data %}
+  <h2>Ringkasan pemesanan</h2>
+  <div class="summary">
+    <p><strong>Nama:</strong> {{ data.nama }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>Tiket:</strong> {{ data.jenis_tiket }}</p>
+    <p><strong>Jumlah:</strong> {{ data.jumlah }}</p>
+    {% if data.catatan %}<p><strong>Catatan:</strong> {{ data.catatan }}</p>{% endif %}
+  </div>
+  <p class="note">Pemesanan ini hanya tersimpan sementara sebagai data demo selama aplikasi berjalan.</p>
+{% else %}
+  <h2>Belum ada pesanan.</h2>
+  <p>Silakan isi form pemesanan terlebih dahulu.</p>
+{% endif %}
+<a class="button" href="{{ url_for('pesan') }}">Kembali ke form</a>
+</section>
+{% endblock %}

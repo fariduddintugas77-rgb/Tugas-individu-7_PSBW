@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Pesan Tiket | NadaRaya Fest{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="tag">BOOK YOUR PASS</p>
+  <h1>Pesan tiketmu.</h1>
+  <p>Form ini menggunakan Flask-WTF, validasi server-side, CSRF Token, flash message, dan pola PRG.</p>
+</section>
+<section class="paper form-paper">
+<form method="POST" data-disable-submit="true" action="{{ url_for('pesan') }}" novalidate>
+  {{ form.hidden_tag() }}
+
+  {{ form.nama.label }}
+  {{ form.nama(placeholder="Nama kamu") }}
+  {% for error in form.nama.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.email.label }}
+  {{ form.email(placeholder="nama@email.com") }}
+  {% for error in form.email.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.jenis_tiket.label }}
+  {{ form.jenis_tiket() }}
+  {% for error in form.jenis_tiket.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.jumlah.label }}
+  {{ form.jumlah(min="1", max="10", placeholder="1") }}
+  {% for error in form.jumlah.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.catatan.label }}
+  {{ form.catatan(rows="4", placeholder="Catatan tambahan (opsional)") }}
+  {% for error in form.catatan.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+
+  {{ form.submit(class="button") }}
+</form>
+<p class="note">Penting: form ini hanya simulasi pembelajaran. Tidak ada pembayaran atau tiket sungguhan.</p>
+</section>
+{% endblock %}
