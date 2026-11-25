@@ -1,5 +1,4 @@
 NADARAYA FEST - TUGAS INDIVIDU 7
-=================================
 
 Project ini merupakan kelanjutan dari project NadaRaya Fest sebelumnya.
 Perubahan utama:
@@ -14,7 +13,7 @@ Perubahan utama:
 - Desain dan struktur utama project lama dipertahankan.
 
 CARA MENJALANKAN
-----------------
+
 1. Buat virtual environment:
    python -m venv venv
 
@@ -34,12 +33,8 @@ CARA MENJALANKAN
    http://127.0.0.1:5000/
 
 HALAMAN FITUR
---------------
+
 /pesan       = Form pemesanan tiket pengunjung
 /admin/tiket = Form tambah tiket admin
 /tiket       = Katalog tiket
 /konfirmasi   = Hasil redirect setelah pemesanan berhasil
-
-Catatan:
-Aplikasi ini adalah demo pembelajaran. Tidak ada sistem pembayaran sungguhan
-dan data tiket/pemesanan disimpan di memori selama aplikasi berjalan.
